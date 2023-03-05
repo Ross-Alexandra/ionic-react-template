@@ -52,11 +52,14 @@
         "eject": "react-scripts eject",
         "lint": "eslint src/** --fix",
         "start:web": "ionic serve",
-        "start:android": "npm run build:android && ionic capacitor run android -l --external -c -s",
+        "start:android": "npm run build && ionic capacitor run android -l --external -c -s",
         "build:web": "npm run build",
-        "build:android": "ionic capacitor copy android",
+        "build:android": "ionic build && ionic capacitor copy android && ionic cap sync",
+        "deploy:android": "ionic cap open android && echo 'Please deploy the app manually using Android Studio.'",
+        "storybook": "start-storybook -p 6006 -s public",
+        "build-storybook": "build-storybook -s public",
         "update:packages": "npm update @capacitor/android @capacitor/app @capacitor/core @capacitor/haptics @capacitor/keyboard @capacitor/status-bar @ionic/react @ionic/react-router @ross-alexandra/react-utilities ionicons",
-        "preinstall": "npm run update:packages"
+        "postinstall": "npm run update:packages && ionic cap add android"
     },
     "eslintConfig": {
         "extends": [
